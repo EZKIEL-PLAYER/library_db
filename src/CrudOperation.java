@@ -73,7 +73,7 @@ public class CrudOperation {
         System.out.print("Enter book ID to update: ");
         int id = Integer.parseInt(SCANNER.nextLine());
 
-        // 1. Check if the book with that ID exists
+        // Check if the book with that ID exists
         Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         String checkSql = "SELECT * FROM books WHERE id = ?";
         PreparedStatement checkStmt = conn.prepareStatement(checkSql);
@@ -88,14 +88,14 @@ public class CrudOperation {
             return; // stop execution
         }
 
-        // 2. Prompt user for new values
+        //Prompt user for new values
         System.out.print("Enter new title: ");
         String newTitle = SCANNER.nextLine();
 
         System.out.print("Enter new author: ");
         String newAuthor = SCANNER.nextLine();
 
-        // 3. Perform update
+        //Perform update
         String updateSql = "UPDATE books SET title = ?, author = ? WHERE id = ?";
         PreparedStatement updateStmt = conn.prepareStatement(updateSql);
         updateStmt.setString(1, newTitle);
@@ -109,7 +109,7 @@ public class CrudOperation {
             System.out.println("Failed to update book.");
         }
 
-        // 4. Clean up
+        //Clean up
         rs.close();
         checkStmt.close();
         updateStmt.close();
